@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+
 	"./tester"
 )
 
@@ -602,7 +603,7 @@ func TestGetUnifiedDiffString(t *testing.T) {
 	// Build diff
 	diff := LineDiffParams{A: SplitLines(A),
 		FromFile: "file", FromDate: "then",
-		B: SplitLines(B),
+		B:      SplitLines(B),
 		ToFile: "tile", ToDate: "now", Eol: "", Context: 1}
 	// Run test
 	diffStr, err := GetUnifiedDiffString(diff)
