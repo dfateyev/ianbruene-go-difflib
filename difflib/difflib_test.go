@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+
 	"./tester"
 )
 
@@ -32,7 +33,7 @@ func splitChars(s string) []string {
 	return chars
 }
 
-func TestlistifyString(t *testing.T) {
+func TestListifyString(t *testing.T) {
 	lst := listifyString("qwerty")
 	if reflect.DeepEqual(lst, []string{"q", "w", "e", "r", "t", "y"}) != true {
 		t.Fatal("listifyString failure:", lst)
@@ -111,7 +112,7 @@ group
 	}
 }
 
-func ExampleGetUnifiedDiffCode() {
+func ExampleGetUnifiedDiffString() {
 	a := `one
 two
 three
@@ -144,7 +145,7 @@ four`
 	// -fmt.Printf("%s,%T",a,b)
 }
 
-func ExampleGetContextDiffCode() {
+func ExampleGetContextDiffString() {
 	a := `one
 two
 three
@@ -181,7 +182,7 @@ four`
 	//   four
 }
 
-func ExampleGetContextDiffString() {
+func ExampleGetContextDiffString_plain() {
 	a := `one
 two
 three
@@ -199,7 +200,7 @@ four`
 		Eol:      "\n",
 	}
 	result, _ := GetContextDiffString(diff)
-	fmt.Printf(strings.Replace(result, "\t", " ", -1))
+	fmt.Print(strings.Replace(result, "\t", " ", -1))
 	// Output:
 	// *** Original
 	// --- Current
@@ -602,7 +603,7 @@ func TestGetUnifiedDiffString(t *testing.T) {
 	// Build diff
 	diff := LineDiffParams{A: SplitLines(A),
 		FromFile: "file", FromDate: "then",
-		B: SplitLines(B),
+		B:      SplitLines(B),
 		ToFile: "tile", ToDate: "now", Eol: "", Context: 1}
 	// Run test
 	diffStr, err := GetUnifiedDiffString(diff)

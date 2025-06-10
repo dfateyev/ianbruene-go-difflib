@@ -198,12 +198,15 @@ func (m *SequenceMatcher) isBJunk(s string) bool {
 // If IsJunk is not defined:
 //
 // Return (i,j,k) such that a[i:i+k] is equal to b[j:j+k], where
-//     alo <= i <= i+k <= ahi
-//     blo <= j <= j+k <= bhi
+//
+//	alo <= i <= i+k <= ahi
+//	blo <= j <= j+k <= bhi
+//
 // and for all (i',j',k') meeting those conditions,
-//     k >= k'
-//     i <= i'
-//     and if i == i', j <= j'
+//
+//	k >= k'
+//	i <= i'
+//	and if i == i', j <= j'
 //
 // In other words, of all maximal matching blocks, return one that
 // starts earliest in a, and of all those maximal matching blocks that
@@ -595,7 +598,7 @@ func (d *Differ) StructuredDump(tag byte, x []string, low int, high int) (out []
 	size := high - low
 	out = make([]DiffLine, size)
 	for i := 0; i < size; i++ {
-		out[i] = NewDiffLine(tag, x[i + low])
+		out[i] = NewDiffLine(tag, x[i+low])
 	}
 	return out
 }
@@ -792,16 +795,16 @@ func formatRangeUnified(start, stop int) string {
 
 // Unified diff parameters
 type LineDiffParams struct {
-	A        []string             // First sequence lines
-	FromFile string               // First file name
-	FromDate string               // First file time
-	B        []string             // Second sequence lines
-	ToFile   string               // Second file name
-	ToDate   string               // Second file time
-	Eol      string               // Headers end of line, defaults to LF
-	Context  int                  // Number of context lines
-	AutoJunk bool                 // If true, use autojunking
-	IsJunkLine func(string)bool   // How to spot junk lines
+	A          []string          // First sequence lines
+	FromFile   string            // First file name
+	FromDate   string            // First file time
+	B          []string          // Second sequence lines
+	ToFile     string            // Second file name
+	ToDate     string            // Second file time
+	Eol        string            // Headers end of line, defaults to LF
+	Context    int               // Number of context lines
+	AutoJunk   bool              // If true, use autojunking
+	IsJunkLine func(string) bool // How to spot junk lines
 }
 
 // Compare two sequences of lines; generate the delta as a unified diff.
